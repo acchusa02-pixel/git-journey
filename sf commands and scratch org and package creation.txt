@@ -1,0 +1,112 @@
+Unlock Package creation and release to production:
+
+
+*Authenticate the dev org:
+
+sf org login web -d -a DevHub
+
+-d => defualt
+-a => alias
+
+login with credentials and make sure the Devhub checkbox enabled otherwise you cannot manage the scratch org.
+
+To check the default and devhub created
+
+sf org list , you can see which is default how many org is linked.
+
+
+
+*Create a scratch org
+ 
+sf org create scratch --set-default --definition-file config/project-scratch-def.json --target-dev-hub DevHub
+
+once created it will generate the username , link and u dont need to give a password to it , it open automatically.
+
+sf org open
+
+you can create a sf project:
+
+sf project generate --name geolocation
+or clone it from github
+
+sf project deploy start
+
+To retrieve the changes done in scratch org
+
+sf project retrieve start
+
+How to create a package:
+
+sf package create --name dreamhouse --description "My Package" --package-type Unlocked --path force-app --no-namespace --target-dev-hub DevHub
+
+name of package, description, package type,path, target-dev-hub
+
+modify the version in the sfdx-project.json file.
+
+{
+   "packageDirectories": [
+      {
+         "path": "force-app",
+         "default": true,
+         "package": "dreamhouse",
+         "versionName": "ver 0.1",
+         "versionNumber": "0.1.0.NEXT"
+      }
+
+   ],
+   "namespace": "",
+   "sfdcLoginUrl": "https://login.salesforce.com",
+   "sourceApiVersion": "61.0",
+   "packageAliases": {
+      "dreamhouse": "0Hoxxx"
+   }
+}
+
+change the version name and version number. dreamhouse inside the package aliases is the package created.
+
+Create a package version.
+
+sf package version create --package dreamhouse --installation-key test1234 --wait 10 --target-dev-hub DevHub
+
+-p is the package alias that maps to the package ID.
+-d is the directory that contains the contents of the package.
+-k is the installation key that protects your package from being installed by unauthorized individuals.
+It looks like this
+
+"packageAliases": {
+   "dreamhouse": "0Hoxxx",
+   "dreamhouse@1.0.0-1": "04txxx"
+}
+
+Installing package to scratch org
+
+sf package install --wait 10 --publish-wait 10 --package dreamhouse@1.0.0-1 --installation-key test1234 --no-prompt --target-org MyScratchOrg
+
+package id generetated
+
+sf org open --target-org MyScratchOrg
+
+Open the installed package in the scratch org and see the package that is installed.
+
+To release the package into the org(actual org)
+
+sf package version promote --package dreamhouse@1.0.0-1 --target-dev-hub DevHub
+
+Install the package in org.
+
+sf package install --wait 10 --publish-wait 10 --package dreamhouse@1.0.0-1 --installation-key test1234 --no-prompt --target-org MyTP
+
+sf org open --target-org DevHub and open the installed packages.
+
+
+
+
+
+
+
+
+
+
+
+
+

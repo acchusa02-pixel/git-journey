@@ -1,0 +1,93 @@
+Salesforce DX adds tools that streamline the entire development life cycle. It improves team development and collaboration, 
+facilitates automated testing and continuous integration, and makes the release cycle more efficient and agile.
+
+But Salesforce DX is so much more than just a set of tools! It provides an alternative to change set development(source of truth is org), and 
+shifts the source of truth from the org to your version control system (VCS). It is the package development process
+
+Scratch org:
+ A scratch org is a dedicated, configurable, and short-term Salesforce environment
+facilitate automated testing and continuous integration
+No. Scratch orgs aren’t meant to be replications of sandboxes or production orgs
+30 days life span
+you can configure the scratch org with different Salesforce editions with configuration file
+
+
+Dev hub
+A Dev Hub provides you and your team with the ability to create and manage scratch orgs
+
+Confirm the CLI is properly installed and on the latest version by running the following command from the command line.
+sf update
+Copy to clipboard
+sf update
+You should see output like @salesforce/cli: Updating CLI...Copy. The update command then displays the release notes for the latest version.
+
+sf --helpCopy	All the available topics  and the top-level commands.
+sf commandsCopy	All available commands.
+
+To authorize the Dev Hub, use the web login flow:
+sf org login web --set-default-dev-hub --alias DevHub
+Copy to clipboard
+sf org login web --set-default-dev-hub --alias DevHub
+
+Only indicate the --set-default-dev-hubCopy flag for your Dev Hub. 
+
+
+
+SF DX projects structure
+
+sfdx-project.jsonCopy	
+This file indicates that the directory is a Salesforce DX project. It contains project information and facilitates the authentication of orgs. It also tells the Salesforce CLI where to put files when syncing between the project and org. Within this file you specify:
+
+The paths to your source code, classes, and metadata, as located in one or more package directories, in this case, force-appCopy.
+The namespace, if needed.
+The API version of your source.
+
+Salesforce CLI commands use this information to know what source to track between the project and the associated org.
+
+
+config/project-scratch-def.jsonCopy	
+Determines the configuration of a scratch org, including which features and settings define its org shape. You can create a configuration file that your whole dev team can share.
+
+force-appCopy	
+The folder that contains the source for your project.
+
+In the command window, change to the geolocationCopyproject directory.
+cd geolocation
+Copy to clipboard
+cd geolocation
+Create a scratch org with the alias GeoAppScratch.
+sf org create scratch --set-default --definition-file config/project-scratch-def.json --alias GeoAppScratch
+Copy to clipboard
+
+
+Sometimes this process takes a few moments. We used these flags when launching the command:
+
+The --set-defaultCopy flag indicates that you want this scratch org to be the default org for this project 
+when running Salesforce CLI commands. To use a different org on a per command basis, you can specify the --target-orgCopy flag and specify another alias.
+The --definition-fileCopy flag is the path to the project scratch org configuration file.
+Remember our friend, the --aliasCopy flag, from the previous unit? It lets you refer to the org using its alias, GeoAppScratch, 
+in future commands that accept the --target-orgCopy flag.
+If you use it with a different org, you can’t create scratch orgs until you correctly identify the Dev Hub using the config setCopy command.
+
+
+if you want to open the Dev Hub org to look at active scratch orgs or your namespace registry, the alias comes in quite handy:
+sf org open --target-org DevHub
+
+f you create an alias for the sandbox ( --aliasCopy flag), you can reference it by this alias instead of its long and often unintuitive username.
+
+For example:
+
+sf org login web --instance-url https://MyDomainName--SandboxName.my.salesforce.com --alias FullSandbox sf org login web --instance-url https://MyDomainName--SandboxName.my.salesforce.com --alias DevSandbox
+Copy to clipboard
+sf org login web --instance-url https://MyDomainName--SandboxName.my.salesforce.com --alias FullSandbox
+sf org login web --instance-url https://MyDomainName--SandboxName.my.salesforce.com --alias DevSandbox
+
+sf org open --target-org FullSandbox
+sf org open --target-org MyScratchOrg
+sf limits api display --target-org DevSandbox
+View All Orgs
+At any point, you can run the command sf org listCopy to see all the orgs you’ve logged in to. Adding the --allCopy flag provides 
+you even more info, such as recently deleted scratch orgs.
+
+Now you’re really ready to get going—let’s go build a new app with the Salesforce CLI and scratch orgs.
+

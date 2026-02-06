@@ -1,0 +1,67 @@
+Asyncronous Apex class
+
+1)Future:
+@future
+public static void method(primitive datatype){
+//write your code
+}
+
+Call:
+Myclass.method();
+
+2) Queueable Apex class: It is class
+public class QueueableDemo implement Queueable{
+
+public void execute(Queueable Context qContx){
+//write logic
+System.enqueueJob(new SecondJob());//Chaining of jobs.
+}
+}
+
+Call:
+System.enqueueJob(new QueueableDemo());
+*U can pass sobjects/nonprimitive/primitive inside constructor.
+
+3)Batch Apex:it is also a class
+public class  BatchJobDemo implement Database.batchable<Sobjects>{
+
+public DatabaseQueryLocator start(Database.BatchableContext bc){
+//u will extract the data through query(which records to be considered for the job)
+return DatabaseQueryLocator.getQueryLocator('Select id from Account');
+
+}
+public void execute(Database.BatchableContext bc,List<SObject>){
+//write logic with the batch of records sent from start()
+
+}
+public void finish(DatabaseBatchableContext bc){
+// after processing of records tasks (includes chaining of jobs or queue but not future method)
+DataBase.execute(new SecondBatchJob())
+}
+
+}
+
+Call: Database.executeBatch(new BatchJobDemo,batchsize); //batchsize=> Integer
+
+Minimum batch size - 1
+Max- 2000
+Default - 200
+
+Scheduled Apex Class:
+
+public class ScheduledJobDemo implement Schedulable{
+public void execute(SchedulableContext sc){
+
+//write logic here
+}
+
+UI-quick find->Scheduled job-> new
+Class:
+
+String Cronvariable = '0 0 0 * * ? *'
+Sec Min Hour Day_of_date Month Day_of_week optionol_year
+
+System.schedule(jobName,Cronvariable,new ClassName());
+
+
+ 

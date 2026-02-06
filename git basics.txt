@@ -1,0 +1,163 @@
+
+git is a system to contol changes done in the project(local system)
+
+github- is the place to save all the changes done in the project remotely(cloud), It is the best VCS for the open source project adopted by Microsoft.
+gitlabs and bitbucket also another tool.
+
+
+3 stages of git 
+
+1. working directory
+2.stage
+3.local repository
+
+working directory - this is the structure where 
+
+stage- this is the middle layer between local stored and remote.
+
+local repository- place which stores all the versions and history of changes made. 
+
+
+Commands:
+
+git init - this commands tells the git to track the changes of the current directory
+
+basic linux commands
+
+cd - change directory - cd myDir
+mkdir - create directory - mkdir myDir
+ls -list of all files in current dir 
+ls -la -> list of all hidden files which will have .git file which has all the information about the changes.
+ cd.. -> change directory 1 step back to current directory
+open . -> open current directory
+
+git status - provide the information of changes done in the files
+
+git reset - which untrack the changes.
+
+git clone url - the local repository can be included in the desktop all its files will be accessed in the pc. it will be by default tracked. but any new 
+folder created has to be given git commands to track the changes.
+
+Stage - Review, remove change and adjust before moving to local repo.
+
+git add - this will save the changes tracked in the stage level.
+ git add --all(shorthand git add --A) it will save the tracked all the changes in all files and folders inside the current folder
+ git add (name of specific files)
+git add* - This will save tracked all the changes except the deleted files if any.
+git add. - This will save only the tracked changes of the current 1st step folder.
+ex: u are in the folder git-journet
+git-jounrney has following items
+one.txt
+two.txt
+myFolder>three.txt
+so here git add. - this will only save the changes of one.txt and two.txt but not the files in myFolder.
+
+committ- changing everything permanently to local repo
+
+git commit -m "I have made some changes"
+
+1st time it asks for authentication:
+
+git config --global user.email ""
+git config --global user.name ""
+
+global-> it will be saved for the given machine , so no need to type again and again.
+--local-> for single repositary.
+
+so when you check the status now it says no changes done.
+
+
+u can rollback the recently made commit
+
+git reset Head~
+ git status- now all the files will be in working directory ready for the stage.
+
+git rm textfile - this will remove the file from the directory
+
+but if you done some changes without commiting u cannot delete directly from the directory with the above command
+
+git rm -f textfile - this will remove the uncommited files.
+
+git rm --cached textfile - this will only remove the file from staged without hard deleting and if the file is not staged then u cannot use this cammand , so make 
+sure to add to staging before using this command. This will make sure to ignore from commiting.
+
+if you want to get back the file from the above command used:
+git reset --hard
+
+git rm -r folder - this will remove all the files in the subfolders
+
+git log - view all the commits , this generates id where we can go back to that version.
+
+TO GET THE SHORT FORM VERSION SUMMARY
+git log --online
+
+
+branching - to work independtly without effecting the main.
+
+git branch
+
+git branch development
+
+To get into the brnach
+git checkout development
+git status
+it will be clean of main
+ do all the modifications works here and it wont be affected to the main , whatever the changes done in main is not affected in development.
+
+To combine the changes done in main to development
+git merge main -m "changes done" now all the changes done in main will be merged in development
+
+To merge from development to main use the same cammand but makesure u checkout to main and change main from above statement to development.
+
+git merge development -m "changes done" 
+
+Merge Conflicts.
+this happens while merging when both main and development branches the changes done in same file.
+
+to resolve this we have to do the decission as which one to keep. 
+
+To goback to the different commut versions , u can use git log --online (u can see the versions of all commits)
+git checkout (versionNumber)
+
+Comparing diff commits
+
+git diff vers1 vers2
+
+to get back from log to cammand prompt press q
+
+
+Push-> sending local changes to the remote
+
+fetch->bringing remote  changes into local machine ,but not merging it.
+
+pull->fetching plus merging so working directory immediately reflects the changes.
+
+git remote origin 'url'
+
+git branch main
+
+git push -u origin main - this will push all the files in main to remote repo of origin branch.
+
+u can add different branches by checkout those pranch and push command.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

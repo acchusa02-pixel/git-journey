@@ -1,0 +1,27 @@
+
+ParentObj-No_of_child__c
+
+trigger ParentObjTrigger on ParentObj(after insert){
+List<ChildObj__c> listOfchild = new List<ChildObj>();
+if(Trigger.isInsert && Trigger.isAfter){
+for(ParentObj pobj:Trigger.new){
+if(No_Of_child__c>0){
+
+for(integer i=0;i<=No_of_child__c;i++){
+
+ ChildObj cobj = new ChildObj();
+cobj.firstName=pobj.Name+ i;
+listOfChild.add(cobj);
+
+}
+}
+else if(No_of_child__c=0){
+pobj.addError('No of child cannot be 0 , Please enter the value greater than 0');
+}
+
+}
+ if(listOfchild.size()>0){
+insert listOfChild;
+}
+}
+}

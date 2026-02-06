@@ -1,0 +1,245 @@
+Sales Cloud is Salesforce’s CRM platform focused on helping sales teams manage leads, opportunities, accounts, and forecasting, while Service Cloud is designed for customer support teams to handle cases, provide omnichannel service, and build stronger customer relationships.
+
+
+Sales Cloud is best if your priority is growing revenue and managing pipelines.
+
+Service Cloud is ideal if your focus is customer satisfaction and efficient support.
+
+
+Aspect	Sales Cloud	Service Cloud
+Primary Use	Sales cycle management	Customer support & service
+Users	Sales reps, managers	Service agents, support teams
+Key Focus	Leads, opportunities, forecasting	Cases, customer satisfaction, loyalty
+Channels	Email, phone, LinkedIn, CRM tools	Phone, email, chat, social, portals
+AI Role	Predictive sales insights	Automated case routing, customer insights
+Outcome	Increased revenue	Improved customer experience
+
+
+Objects in sales cloud
+
+Lead – Potential customer or prospect not yet qualified.
+
+Account – Represents a company or organization you do business with.
+
+Contact – Individual person associated with an Account.
+
+Opportunity – Potential revenue-generating deal linked to an Account/Contact.
+
+Campaign – Marketing initiative used to generate leads and opportunities.
+
+Quote – Proposed price and product details for an Opportunity.
+
+Product & Pricebook – Catalog of products/services and their pricing.
+
+Forecast – Predicts future sales revenue based on pipeline data.
+
+Activity (Task/Event) – Meetings, calls, emails, and follow-ups tracked against records.
+
+
+Service Cloud is designed for customer support and case resolution.
+
+Case – Customer issue, request, or inquiry that needs resolution.
+
+Contact – The customer raising the case (shared with Sales Cloud).
+
+Account – The company the customer belongs to (shared with Sales Cloud).
+
+Knowledge Article – Repository of FAQs, troubleshooting guides, and solutions.
+
+Service Console – Workspace for agents to manage multiple cases.
+
+Entitlement – Defines what level of support a customer is entitled to (e.g., SLA).
+
+Service Contract – Agreement outlining support terms and conditions.
+
+Solution (legacy) – Older object for storing answers, now replaced by Knowledge.
+
+Activity (Task/Event) – Follow-ups, calls, or actions taken to resolve cases.
+
+
+
+Shared Objects: Accounts and Contacts are common to both Sales and Service Cloud.
+
+Sales-Specific: Leads, Opportunities, Quotes, Forecasts.
+
+Service-Specific: Cases, Knowledge, Entitlements, Service Contracts.
+
+
+Every object in Salesforce (whether standard like Account or custom) follows a consistent schema pattern:
+
+1. Object Definition
+Name: Unique identifier (e.g., Account, Contact, Opportunity).
+
+Label: Human-readable name shown in the UI.
+
+API Name: Used in Apex, SOQL, and integrations (e.g., Account.Name).
+
+2. Fields
+Each object contains fields that store data:
+
+Standard Fields: Predefined by Salesforce (e.g., Name, CreatedDate, OwnerId).
+
+Custom Fields: Added by admins/developers (e.g., Region__c, Customer_Type__c).
+
+Field Types:
+
+Text, Number, Date/Time, Picklist, Lookup, Checkbox, Formula, etc.
+
+System Fields (always present):
+
+Id (unique record identifier)
+
+CreatedById, CreatedDate
+
+LastModifiedById, LastModifiedDate
+
+3. Relationships
+Objects are connected through relationships:
+
+Lookup Relationship – Links one object to another (e.g., Contact → Account).
+
+Master-Detail Relationship – Parent-child dependency (e.g., Opportunity Line Item → Opportunity).
+
+Many-to-Many Relationship – Achieved via junction objects (e.g., Campaign Member links Campaigns and Leads/Contacts).
+
+4. Metadata & Behavior
+Record Types – Allow different business processes within the same object (e.g., different Opportunity stages for B2B vs B2C).
+
+Page Layouts – Control how fields are displayed to users.
+
+Validation Rules – Ensure data quality.
+
+Triggers/Flows – Automate logic when records are created/updated.
+
+5. Security & Sharing
+Profiles & Permission Sets – Define who can view/edit fields.
+
+Org-Wide Defaults (OWD) – Control baseline record visibility.
+
+Role Hierarchy & Sharing Rules – Fine-tune access.
+
+
+
+
+A service process is the end-to-end flow that customer service teams follow to handle inquiries, complaints, or requests. In Service Cloud, this process is highly customizable and powered by automation, AI, and real-time data.
+
+1. Case Creation
+Customers raise issues via email, phone, chat, social media, web forms, or Experience Cloud portals.
+
+A Case record is created with details like subject, description, priority, and contact info.
+
+2. Case Assignment
+Cases are routed using:
+
+Omni-Channel: Real-time routing based on agent availability.
+
+Skills-Based Routing: Assigns cases to agents with matching expertise.
+
+Assignment Rules: Based on criteria like region, product, or priority.
+
+3. Case Investigation
+Agents review case details, contact the customer, and gather more information.
+
+They may collaborate internally using Chatter or escalate if needed.
+
+4. Knowledge Article Reference
+Agents use Knowledge Articles to find solutions.
+
+Articles can also be shared with customers via email or portals.
+
+5. Entitlement & SLA Tracking
+Entitlements define what support the customer is eligible for.
+
+Milestones track SLA targets like first response or resolution time.
+
+6. Case Resolution
+Once resolved, agents update the case status and resolution notes.
+
+May involve sending confirmation emails or updating related records.
+
+7. Feedback & Closure
+Customers may receive a survey to rate their experience.
+
+Case is marked Closed, and data is used for reporting and analytics.
+
+
+
+
+
+
+Sales Cloud	Manage leads, opportunities, and revenue.
+Service Cloud	Handle customer support and case resolution.
+Marketing Cloud	Automate and personalize digital marketing across email, SMS, social, and web.
+Experience Cloud	Build branded portals, websites, and communities for customers and partners.
+Commerce Cloud	Power B2C and B2B e-commerce experiences with AI and mobile-first design.
+Analytics Cloud (Tableau CRM)	Visualize and analyze CRM data with dashboards and predictive insights.
+Financial Services Cloud	Tailored for banks, insurers, and wealth managers to manage client relationships.
+Health Cloud	Designed for healthcare providers to manage patient records and care plans.
+Education Cloud	Support student success, alumni engagement, and institutional operations.
+Nonprofit Cloud	Fundraising, program management, and donor engagement for NGOs.
+Manufacturing Cloud	Align sales and operations with forecasts and partner collaboration.
+Media Cloud	Manage subscriptions, advertising, and audience engagement.
+Energy & Utilities Cloud	Handle customer service, field operations, and regulatory compliance.
+Public Sector Cloud	Streamline citizen services and government workflows.
+Net Zero Cloud	Track and reduce carbon emissions and sustainability metrics.
+
+
+
+The sales process in Salesforce Sales Cloud is a structured series of steps that guides sales teams from lead generation to closing deals. It typically includes lead qualification, account/contact creation, opportunity tracking, quoting, and deal closure — all supported by automation, analytics, and customizable stages.
+		
+🧭 What Is a Sales Process?
+A sales process is a repeatable framework that helps sales reps move prospects through the buying journey. It ensures consistency, improves forecasting, and boosts win rates.
+
+🔑 Key Goals:
+Qualify leads efficiently
+
+Track customer interactions
+
+Forecast revenue accurately
+
+Close deals faster
+
+🔄 General Sales Process in Salesforce Sales Cloud
+Here’s the typical flow used by sales teams in Salesforce Sales Cloud:
+
+1. Lead Generation
+Capture leads via web forms, campaigns, emails, or social media.
+
+Leads are stored in the Lead object.
+
+2. Lead Qualification
+Assess if the lead is sales-ready using criteria like BANT (Budget, Authority, Need, Timeline).
+
+Qualified leads are converted into Account, Contact, and optionally an Opportunity.
+
+3. Account & Contact Creation
+Account: Represents the company.
+
+Contact: Represents the individual within the company.
+
+4. Opportunity Management
+Create an Opportunity to track the potential deal.
+
+Move through Opportunity Stages (customizable), such as:
+
+Prospecting
+
+Qualification
+
+Needs Analysis
+
+Proposal/Price Quote
+
+Negotiation/Review
+
+Closed Won / Closed Lost
+
+5. Quote & Product Selection
+Add Products from the Pricebook.
+
+Generate Quotes with pricing and terms.
+
+6. Deal Closure
+Finalize the deal and mark the Opportunity as Closed Won.
+
+Trigger post-sale processes like order fulfillment or onboarding.

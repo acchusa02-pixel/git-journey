@@ -1,0 +1,106 @@
+
+Ways of communication
+
+Outbound: If salesforce needs some data from SAP, Hence
+Salesforce Initiates the request.
+
+As we are salesforce developers , from our perceptive it is
+Outbound Integration.
+
+
+Scenario 1 : Call External System from Salesforce using Rest
+Callout
+
+If Salesforce wants some data it initiates request hence
+it is called outbound integration by callout.
+
+Things required for Callout.
+Authorization-> External System needs to provide us. Their
+team will give this
+||
+Api Details
+*Endpoint Url
+*Get/post/put/patch/delete
+*Request body
+*Response
+Add Externam sys to Named credentials/Remote Site settings
+(Salesforce end after recieving the setup).
+
+Template for Rest callout
+
+Http http = new Http();
+HttpRequest req = new HttpRequest();
+req.setEndpoint('https://');
+req.setMethod('Post');
+req.setHeader('Content-Type','application/json;charset=UTF-8');
+req.setBody();//json or xml
+
+HttpResponse res = http.send(req);
+
+
+Rest - Support both XMl and json structure, Soap only xml.
+Rest is stateless,faster,json and xml(Representational State transfer)
+Soap is stateful,slow,xml,secure(Simple Object Access Protocol)
+
+Soap - External system will create a class , we need to get it
+
+and go to apex classes and generate WSDL and go through the class
+and call the method.
+
+Inbound Integration
+
+Standard Rest Api: For any Insert/Delete/Update/Query opp
+on any salesforce Object, Salesforce offers API(These are 
+called Standard APIs). Donot write Custom Apis for these kind
+of scenarios. These api are available in Both Rest and Soap calls.
+
+Call In
+Create user for external user and share it with them
+Share our api details
+endpoint url
+get/post/put/patch/delete
+request body
+response
+create connected app
+
+Standard api:
+
+https://MyDomainName.my.salesforce.com/services/data/v61.0
+/sobjects/Account/00893e89829eu
+
+Salesforce domal address and Service resource which is responsible
+for Query account.
+
+To test the Inbound Integration we can try Postman.
+
+How will you access to salesforce from External system
+Outh
+1.User name /Password
+2.Client Id/Client Secrete
+
+Outh is Industry standards to authenticate
+Outh2 : Firstly External system sends username and password
+Salesforce will generate Access tokem which is temporary id card
+This token will be vaild for 1 hr only
+then external system sends access token along with the request account.
+Salesforce will hereback to accounts.
+
+Here password is password + security token.
+
+1st Postman should send username,password,client id and secrete to salesforce
+which is Authorization API.
+
+Authorization api is : Outhorizantion End point: https://hostname/services/oauth2/token
+or u can use curl command which automatically creates the 
+fields for username , password.
+
+for the first time you will face the issue as invalid grant
+so you need to enable one settings: Go to Oauth in quick fine
+enable Allow Oauth username and password flows.
+
+Once you get it paste the token 
+
+beside to bearer in authorization field in postman.
+if it doesn't work check with version of api and change to 15 digit id from 18
+
+

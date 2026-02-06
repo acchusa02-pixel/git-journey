@@ -1,0 +1,23 @@
+Profiles
+Permission set
+Sharing settings
+Role 
+OWD
+Connected app
+Apex class
+Trigger
+Flow
+Custom Metadata
+Integration
+
+Overview about my project
+
+I worked in an life science salesforce project on sales cloud for abbott for over 2.5 years. I worked for an application about abbott 
+diabetic products. The application gives business insights on the consumers(patient) data to help the marketing
+cloud to run their compaigns. This application recieves data from vaious country of the apac region through the 
+integration into the staging objects and they are consolidated to single object through deduplication and merging rules
+synched to single object through queuable apex ,triggers and flows. This object is utilized by the marketing cloud to run 
+their campaign to know about the consumer demands and need based on which promotional emails are sent to order their product.
+
+
+We were doing configuration level changes such as field creation , pagelayout
