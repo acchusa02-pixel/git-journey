@@ -140,6 +140,11 @@ git push -u origin main - this will push all the files in main to remote repo of
 
 u can add different branches by checkout those pranch and push command.
 
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream https://github.com/acchusa02-pixel/git-journey master
+
+
 
 
 
